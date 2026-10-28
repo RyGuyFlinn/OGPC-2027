@@ -10,6 +10,7 @@ public class SecurityCamera : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(transform.eulerAngles.z);
         if (transform.eulerAngles.z > maxRotation && facingmax)
             facingmax = false;
         if (transform.eulerAngles.z < minRotation && !facingmax)
@@ -17,6 +18,7 @@ public class SecurityCamera : MonoBehaviour
         
         if (facingmax)
             transform.Rotate(0, 0, Time.deltaTime * speed);
+
         else if (!facingmax)
             transform.Rotate(0, 0, Time.deltaTime * -speed);
 
