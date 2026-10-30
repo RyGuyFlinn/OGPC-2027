@@ -8234,7 +8234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   maxSpeed: 16
-  jumpForce: 900
+  jumpForce: 18
   acceleration: 10
   groundFriction: 5
   groundCheckPoint: {fileID: 516135356}
@@ -8243,6 +8243,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   OnWall: 0
+  JumpedFromWall: 0
+  WallJumpPower: 5
   JumpPressed: 0
 --- !u!114 &274938653
 MonoBehaviour:
