@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float PressedTime = 0;
     private float CoyoteTime = 0.15f;
     private float LastGroundTime = -1f;
+    public float airAcceleration = 0.1f;
 
     [Header("Ground Check")]
     public Transform groundCheckPoint;
@@ -21,13 +22,14 @@ public class PlayerMovement : MonoBehaviour
     public bool OnWall = false;
     public bool JumpedFromWall = false;
     public float WallJumpPower = 10;
+    public float verticalWallJumpPower = 7;
     //Sorry lots of variables, it got complicated real quick
     private float WallJumpTime = 0.15f;
     private float LastWallJumpTime = -1f;
     private float WallJumpBuffer = 0.15f;
     private float LastTimeOnWall = -1f;
     private float LastDirection = 0f;
-    private float TrueLastDirection=0f;
+    private float TrueLastDirection = 0f;
     private bool CanWallJump = false;
 
     private Rigidbody2D rb;
@@ -64,13 +66,19 @@ public class PlayerMovement : MonoBehaviour
         if (JumpedFromWall == false)
         {
             //Apply the friction to the movement
+            /*
             if (rb.linearVelocity.x > 0)
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x - Mathf.Min(groundFriction, rb.linearVelocity.x), rb.linearVelocity.y); //Velocity is positive.
             else if (rb.linearVelocity.x < 0)
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x - Mathf.Max(-groundFriction, rb.linearVelocity.x), rb.linearVelocity.y); //Velocity is negative.
-
+            */
             //Apply the velocity to the player
-            rb.linearVelocity += new Vector2(scaledAcceleration * Input.GetAxis("Horizontal"), 0);
+
+            //New Lerping method, I like it more
+            float currentAcceleration = acceleration;
+            if (!isGrounded) currentAcceleration = airAcceleration;
+            Vector2 TargetVelocity = new Vector2(maxSpeed * Input.GetAxis("Horizontal"), rb.linearVelocity.y);
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, TargetVelocity, currentAcceleration);
         }
         //Pushed the player away from the wall for a certain amount of time
         if (Time.time - LastWallJumpTime > WallJumpTime)
@@ -97,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
                 JumpedFromWall = true;
                 LastWallJumpTime = Time.time;
                 JumpPressed = false;
-                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+                rb.AddForce(Vector2.up * verticalWallJumpPower, ForceMode2D.Impulse);
                 rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
                 rb.AddForce(new Vector2(-TrueLastDirection, 0) * WallJumpPower, ForceMode2D.Impulse);
             }
