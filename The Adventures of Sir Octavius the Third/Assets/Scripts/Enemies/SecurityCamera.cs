@@ -38,7 +38,7 @@ public class SecurityCamera : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player");
+        if (other.tag == "Player")
         {
             if (other.gameObject.GetComponent<PlayerManager>().playerColor != backgroundColor)
             {
