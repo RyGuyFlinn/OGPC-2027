@@ -7,5 +7,6 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         playerColor = GetComponent<SpriteRenderer>().color;
+        Debug.Log(MoustacheData.moustacheIndex);
     }
 }
