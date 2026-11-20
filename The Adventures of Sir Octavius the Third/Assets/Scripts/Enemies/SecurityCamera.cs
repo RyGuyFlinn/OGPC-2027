@@ -42,7 +42,7 @@ public class SecurityCamera : MonoBehaviour
         {
             if (other.gameObject.GetComponent<PlayerManager>().playerColor != backgroundColor)
             {
-                Debug.Log("Player Caught!!!");
+                other.gameObject.GetComponent<PlayerManager>().Death();
             }
         }
     }

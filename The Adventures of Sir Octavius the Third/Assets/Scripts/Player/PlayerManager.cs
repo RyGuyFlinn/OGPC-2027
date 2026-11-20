@@ -4,9 +4,16 @@ public class PlayerManager : MonoBehaviour
 {
     public Color playerColor;
 
+    public Transform lastCheckPoint;
+
     void Update()
     {
         playerColor = GetComponent<SpriteRenderer>().color;
-        Debug.Log(MoustacheData.moustacheIndex);
+    }
+
+    public void Death()
+    {
+        Debug.Log("Player Die");
+        transform.position = lastCheckPoint.position;
     }
 }

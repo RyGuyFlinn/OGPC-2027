@@ -4459,7 +4459,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83b136ed8fdd49458d6abd222ed00ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoustacheManager
-  moustacheIndex: 0
+  animator: {fileID: 952487135}
+  selectionColor: {r: 1, g: 0.93640804, b: 0, a: 1}
+  buttons:
+  - {fileID: 262734672}
+  - {fileID: 724754262}
+  - {fileID: 2116033394}
+  - {fileID: 1744556815}
+  - {fileID: 1676535496}
+  - {fileID: 1467758443}
+  - {fileID: 870314220}
+  - {fileID: 1902423454}
+  - {fileID: 1658967715}
 --- !u!1 &1847543552
 GameObject:
   m_ObjectHideFlags: 0
